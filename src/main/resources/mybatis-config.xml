@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="db.properties" />
+
+    <!-- 类型别名 -->
+    <typeAliases>
+        <typeAlias type="com.mybatis.skill.pojo.SkillConfig" alias="SkillConfig" />
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driverClassName}"/>
+                <property name="url" value="${aiir.url}"/>
+                <property name="username" value="${aiir.username}"/>
+                <property name="password" value="${aiir.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- mappers -->
+    <mappers>
+        <mapper resource="com/mybatis/skill/xml/SkillConfigMapper.xml"/>
+        <mapper resource="com/mybatis/skill/dao/SkillConfigDao.xml"/>
+        <!--<mapper resource="com.mybatis.skill.xml.SkillConfigAnnotationMapper"/>-->
+    </mappers>
+
+
+</configuration>

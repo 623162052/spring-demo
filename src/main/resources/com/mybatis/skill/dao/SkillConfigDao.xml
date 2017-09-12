@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.skill.dao.SkillConfigDao">
+
+    <resultMap id="skillConfigMap" type="SkillConfig">
+        <result property="skillId" column="skill_id"/>
+        <result property="skillName" column="skill_name"/>
+        <result property="skillDesc" column="skill_desc"/>
+        <result property="priorityOrder" column="priority_order"/>
+        <result property="queueMaxSize" column="queue_max_size"/>
+        <result property="queueTimeout" column="queue_timeout"/>
+        <result property="isOverflow" column="is_overflow"/>
+        <result property="skillType" column="skill_type"/>
+    </resultMap>
+
+    <select id="querySkillConfig" parameterType="int" resultMap="skillConfigMap">
+		select * from ir_skill_config where skill_id = #{skillId}
+	</select>
+
+    <select id="querySkillConfigList" resultMap="skillConfigMap">
+        select * from ir_skill_config
+    </select>
+
+    <delete id="deleteSkillConfig" parameterType="int">
+        delete from ir_skill_config where skill_id = #{skillId}
+    </delete>
+
+    <insert id="insertSkillConfig" parameterType="SkillConfig">
+        insert into ir_skill_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="skillId != null">SKILL_ID,</if>
+            <if test="skillName != null and skillName != ''">SKILL_NAME,</if>
+            <if test="skillDesc != null and skillDesc != ''">SKILL_DESC,</if>
+            <if test="priorityOrder != null">PRIORITY_ORDER,</if>
+            <if test="queueMaxSize != null">QUEUE_MAX_SIZE,</if>
+            <if test="queueTimeout != null">QUEUE_TIMEOUT,</if>
+            <if test="isOverflow != null and isOverflow != ''">IS_OVERFLOW,</if>
+            <if test="opTime != null">OP_TIME,</if>
+            <if test="skillType != null">SKILL_TYPE</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="skillId != null">#{skillId,jdbcType=INTEGER},</if>
+            <if test="skillName != null and skillName != ''">#{skillName,jdbcType=VARCHAR},</if>
+            <if test="skillDesc != null and skillDesc != ''">#{skillDesc,jdbcType=VARCHAR},</if>
+            <if test="priorityOrder != null">#{priorityOrder,jdbcType=INTEGER},</if>
+            <if test="queueMaxSize != null">#{queueMaxSize,jdbcType=INTEGER},</if>
+            <if test="queueTimeout != null">#{queueTimeout,jdbcType=INTEGER},</if>
+            <if test="isOverflow != null and isOverflow != ''">#{isOverflow,jdbcType=VARCHAR},</if>
+            <if test="opTime != null">#{opTime,jdbcType=TIMESTAMP},</if>
+            <if test="skillType != null">#{skillType,jdbcType=INTEGER}</if>
+        </trim>
+    </insert>
+
+</mapper>
