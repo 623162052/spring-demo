@@ -1,7 +1,6 @@
-package com.configutation;
+package com.redisson;
 
 import com.mybatis.configuration.DbInitialization;
-import com.redisson.RedissonConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.*;
@@ -19,12 +18,12 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @PropertySource(value = {"classpath:redis_single.properties"})
 @ImportResource({"classpath:applicationContext.xml"})
 @ComponentScan(basePackages = "com")
-@EnableAsync        // <task:annotation-driven/>
+@EnableAsync
 @EnableScheduling
-@Import({RedisHttpSessionConfig.class, DbInitialization.class, RedissonConfig.class})
-public class AppConfiguration {
+@Import({DbInitialization.class, RedissonConfig.class})
+public class AppTestConfiguration {
 
-    private static final Log LOG = LogFactory.getLog(AppConfiguration.class);
+    private static final Log LOG = LogFactory.getLog(AppTestConfiguration.class);
 
     /**
      * 读取配置文件
@@ -36,12 +35,6 @@ public class AppConfiguration {
 
     /**
      * TaskExecutor
-     *
-     * 线程数评估：
-     *  AccessService        5
-     *  TimeoutHandler       1
-     *  DistributeHandler    20
-     *  Log                  独立服务
      */
     @Bean
     public TaskExecutor taskExecutor() {

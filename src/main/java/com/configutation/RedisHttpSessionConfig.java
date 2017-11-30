@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * RedisHttpSessionConfig
  * Created by shiwx on 17/2/7.
  */
-@PropertySource(value = {"classpath:redis.properties"})
+@PropertySource(value = {"classpath:redis_single.properties"})
 //@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3600)
 public class RedisHttpSessionConfig {
 

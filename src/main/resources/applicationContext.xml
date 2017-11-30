@@ -4,8 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
     <!-- 引入dubbo配置 -->
-    <import resource="/dubbo/applicationDubbo.xml" />
+    <!--<import resource="/dubbo/applicationDubbo.xml" />-->
 
 </beans>
